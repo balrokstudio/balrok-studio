@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #11233A;
-  --foreground: #171717;
+  --background: #0a0f1a;
+  --foreground: #f5f5f5;
+  --muted: #6b7280;
+  --accent: #ffffff;
 }
 
 @theme inline {
@@ -12,20 +14,110 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #11233A;
-    --foreground: #ededed;
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Clean text styling */
+.text-muted {
+  color: var(--muted);
+}
+
+/* Minimal border styling */
+.border-subtle {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Service cards - clean glassmorphism */
+.service-card-inner {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-card-inner {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Primary button - clean white */
+.btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.15);
+}
+
+/* Secondary button - outline */
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Timeline marker */
+.step-marker {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.step-marker:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer link underline */
+.footer-link {
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+/* Fade in animation utility */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  /* Base color and SVG background */
-  background-color: var(--background);
-  background-image: url('/bg.svg');
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
-  color: var(--foreground);
-  font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
 }
