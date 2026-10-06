@@ -7,11 +7,66 @@
   --accent: #ffffff;
 }
 
+/* Extra breakpoints. `max-xs:` is used by the hero visual on small screens. */
+@theme {
+  --breakpoint-xs: 520px;
+}
+
+/* -------------------------------------------------------------------------
+   Hero — "Inicio" Figma frame (file 8MLojKHAFEE3rGYwgROC4h · node 4:14123).
+   The desktop composition is locked to the 1440px design: the headline keeps
+   its exact 4-line break and the frame's 64px size. Written as plain media
+   queries on purpose — Tailwind emits variant rules in theme-key order, so a
+   custom breakpoint cannot reliably land after sm:/lg: in the cascade.
+   ------------------------------------------------------------------------- */
+.hero-title {
+  font-size: 40px;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 52px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 56px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-title {
+    font-size: 64px;
+  }
+
+  .hero-title > span {
+    display: block;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-rubik);
   --font-mono: var(--font-geist-mono);
+
+  /* Font families taken from the Figma "Inicio" frame (node 4:14123) */
+  --font-display: var(--font-rubik-one); /* wordmark  · Rubik One */
+  --font-body: var(--font-inter); /* UI & copy · Inter */
+  --font-code: var(--font-plex-mono); /* mono      · IBM Plex Mono */
+
+  /* Palette taken from the Figma "Inicio" frame (node 4:14123) */
+  --color-line: #294467; /* hairline borders on dark */
+  --color-brand: #2463ff; /* primary blue */
+  --color-sky: #9bc5ff; /* light blue accents & outlines */
+  --color-slate: #b1c2da; /* body copy on dark */
+  --color-steel: #536580; /* dim mono labels */
+  --color-ink: #0a1b36; /* dark copy on light surfaces */
+  --color-night: #071226; /* deepest panel */
+  --color-navy: #103e92; /* radial gradient mid stop */
+  --color-mist: #f2f6ff; /* light surface */
+  --color-haze: #ced9ed; /* light divider */
 }
 
 body {

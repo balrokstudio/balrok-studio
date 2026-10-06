@@ -33,6 +33,14 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# figma personal access token (scope: file_read) — nunca commitear
+.figma-token
+.figma-token.*
+
+
+# volcados de diseño (spec.md / spec.json / previews / assets por nodo)
+/design
+
 # vercel
 .vercel
 
