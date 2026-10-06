@@ -5,34 +5,45 @@ import { useReveal } from "./useReveal";
 
 /**
  * "Plan integral" — built 1:1 from the Figma file 8MLojKHAFEE3rGYwgROC4h:
- *   · Desktop azul frame → node 4:14271, 1440 × 711
+ *   · Desktop azul frame → node 4:14271, 1440 × 835
  *       fondo #2463ff · padding 104 / 80 · dos columnas con gap 112:
  *       intro fija de 496 (gap 28) + tarjeta que ocupa los 672 restantes ·
  *       tarjeta bg #0d1e3a, 1px #2463ff, radius 16, padding 32, gap 24 ·
  *       precio 40px · botón 52px con glow #2463ff a0.25
- *   · Mobile azul frame → node 4:14625, 390 × 1149
+ *   · Mobile azul frame → node 4:14625, 390 × 1264
  *       padding 64 / 24 · apilado, gap 40 · precio 28px · padding 24
  *
  * La tarjeta se pinta con `inset-ring` y no con `border` por el mismo motivo
  * que en Beneficios: el stroke de Figma va por dentro, y un borde CSS de 1px
- * agrega 2px a una tarjeta de altura automática (711 → 713 en el frame).
+ * agrega 2px a una tarjeta de altura automática.
  * Precio y cierre mono cambian de copia por breakpoint, así que viven en dos
  * spans y no en el mismo texto reflowado.
  *
+ * La lista «Incluye» (gap 16) abre con dos prestaciones destacadas —fondo
+ * #142c50 y borde #2463ff, semibold— y sigue con cinco normales. Igual que la
+ * tarjeta, las destacadas llevan `inset-ring` y no `border`: un borde CSS las
+ * crecería 2px a cada una (y la tarjeta es altura automática). Su padding
+ * vertical difiere por breakpoint (12px en DT, 10px en MB): `px-3 py-[10px]
+ * lg:p-3`.
+ *
  * Dos line-heights están clavados en px porque Figma no los resuelve como el
  * navegador y la tarjeta es altura automática, así que cada décima se acumula:
- * midiendo la tarjeta exportada a 1:1 (672×503 · 342×561) cada «Prestación»
- * ocupa 22px —no los 22.4 de `1.6 × 14`— y la etiqueta «Todo incluido» 25px
- * —no los 26 que da `normal`, que Chrome redondea a 11+3—. Con los valores del
- * diseño la sección mide 711.2 (DT) y 1146.6 (MB) contra 711 y 1149.
+ * cada «Prestación» ocupa 22px —no los 22.4 de `1.6 × 14`— y la etiqueta
+ * «Todo incluido» 25px —no los 26 que da `normal`. Con los valores del diseño
+ * la sección mide 835.2 (DT) y 1262.5 (MB) desde que el plan pasó a 7 ítems.
  */
 
-const INCLUDED = [
-  "Dominio propio incluido",
-  "Hosting de alta velocidad y seguridad garantizada",
-  "1 usuario de mail profesional corporativo",
-  "Optimización SEO inicial para aparecer en Google",
-  "Mantenimiento y soporte técnico continuo",
+/* El plan ahora lista las dos primeras prestaciones como destacadas (disco
+   con fondo #142c50 y borde #2463ff) y el resto normales. El diseño manda el
+   texto exacto, incluyendo el paréntesis de "Dominio propio (.com.ar / .com)". */
+const FEATURES = [
+  { highlighted: true, label: "Diseño UX/UI a medida incluido" },
+  { highlighted: true, label: "Desarrollo web integral incluido" },
+  { highlighted: false, label: "Dominio propio (.com.ar / .com )" },
+  { highlighted: false, label: "Hosting de alta velocidad y seguridad garantizada" },
+  { highlighted: false, label: "1 usuario de mail profesional corporativo" },
+  { highlighted: false, label: "Optimización SEO inicial para aparecer en Google" },
+  { highlighted: false, label: "Mantenimiento y soporte técnico continuo" },
 ];
 
 /* Vectors traced from the Figma nodes (stroke width 1.6). */
@@ -176,11 +187,20 @@ export default function PlanSection() {
             <div className="h-px w-full bg-line" />
 
             <div className="flex w-full flex-col gap-4">
-              {INCLUDED.map((item) => (
-                <div key={item} className="flex w-full items-start gap-3">
+              {FEATURES.map(({ highlighted, label }) => (
+                <div
+                  key={label}
+                  className={
+                    highlighted
+                      ? "flex w-full items-center gap-3 rounded-lg bg-[#142c50] px-3 py-[10px] inset-ring inset-ring-brand lg:p-3"
+                      : "flex w-full items-start gap-3"
+                  }
+                >
                   <IconCheck />
-                  <p className="min-w-px flex-1 font-body text-[14px] leading-[22px] text-white">
-                    {item}
+                  <p
+                    className={`min-w-px flex-1 font-body text-[14px] leading-[22px] text-white${highlighted ? " font-semibold" : ""}`}
+                  >
+                    {label}
                   </p>
                 </div>
               ))}
