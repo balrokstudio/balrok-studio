@@ -180,7 +180,7 @@ export default function PlanSection() {
             </div>
 
             <p className="font-body text-[28px] font-semibold leading-[1.2] text-white lg:text-[40px]">
-              <span className="lg:hidden">$25.000 ARS al mes</span>
+              <span className="lg:hidden">$35.000 ARS al mes</span>
               <span className="hidden lg:inline">$35.000 ARS al mes</span>
             </p>
 
