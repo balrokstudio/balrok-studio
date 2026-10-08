@@ -127,7 +127,7 @@ export default function ContactSection() {
         {/* Formulario de proyecto */}
         <form
           data-reveal
-          action="mailto:contacto@balrokstudio.com"
+          action="mailto:hola@balrokstudio.com"
           method="post"
           encType="text/plain"
           className="flex w-full flex-col gap-6 rounded-3xl bg-[#0d1e3a] p-6 inset-ring inset-ring-line opacity-0 lg:min-w-px lg:flex-1 lg:p-8"

@@ -122,7 +122,7 @@ export default function HeroSection() {
               </a>
             ))}
             <a
-              href="mailto:contacto@balrokstudio.com"
+              href="mailto:hola@balrokstudio.com"
               className="flex h-[52px] w-[144px] shrink-0 items-center justify-center rounded-lg border border-sky text-[14px] font-semibold leading-[16.94px] text-white transition-colors hover:bg-white/5"
             >
               Hablemos
@@ -164,7 +164,7 @@ export default function HeroSection() {
           {/* Acciones */}
           <div data-reveal className="flex flex-col gap-3 opacity-0 sm:flex-row">
             <a
-              href="mailto:contacto@balrokstudio.com"
+              href="mailto:hola@balrokstudio.com"
               className="flex h-[52px] w-full items-center justify-center gap-3 rounded-lg bg-brand text-[14px] font-semibold leading-[16.94px] text-white shadow-[0_4px_24px_rgba(36,99,255,0.25)] transition-[background-color,box-shadow] hover:bg-[#3d74ff] hover:shadow-[0_6px_32px_rgba(36,99,255,0.4)] sm:w-[232px]"
             >
               Empezar mi proyecto
